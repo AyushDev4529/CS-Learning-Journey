@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS_Learning_Journey;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -47,15 +48,23 @@ public class MapRenderer
         int nextPlayerRow = playerRow;
         int nextPlayerCol = playerCol;
 
-        //calculate next wall
-        if (playerPosition == 'w' || playerPosition == 'W')
+        // calculate next player position based on input
+        
+        switch(char.ToLower(playerPosition))
+        {
+            case 'w':
                 nextPlayerRow--;
-            if (playerPosition == 'a' || playerPosition == 'A')
+                break;
+            case 'a':
                 nextPlayerCol--;
-            if (playerPosition == 's' || playerPosition == 'S')
+                break;
+            case 's':
                 nextPlayerRow++;
-            if (playerPosition == 'd' || playerPosition == 'D')
+                break;
+            case 'd':
                 nextPlayerCol++;
+                break;
+        }
 
 
         //check if inBound
@@ -96,4 +105,51 @@ public class MapRenderer
 
         return map;
     }
+
+    public static void Run()
+    {
+        //mapSize input for Dungeon Map
+
+        int mapSize;
+        while (true)
+        {
+            Console.WriteLine("Enter Map Sie between 5 to 15");
+            string? inputSize = Console.ReadLine();
+            if (int.TryParse(inputSize, out mapSize) && mapSize >= 5 && mapSize <= 15)
+            {
+                break;
+            }
+
+        }
+
+        Console.Clear();
+        MapRenderer.DrawMap('\0', mapSize);
+        Console.WriteLine(" Enter WSAD to move , q to exit");
+
+
+        while (true)
+        {
+            Console.WriteLine();
+            //ReadKey(true) take input from key press & KeyChar gets char of the key
+            char input = Console.ReadKey(true).KeyChar;
+            Console.Clear();
+            if (input == 'q' || input == 'Q')
+            {
+                Console.WriteLine("Ok existing");
+                System.Threading.Thread.Sleep(1000);
+                MainMenu.mainMenu();
+                break;
+            }
+            else
+            {
+               
+
+                //Run Dungeon Map
+                MapRenderer.DrawMap(input, mapSize);
+            }
+            
+        }
+
+    }
 }
+

@@ -17,7 +17,7 @@ Conditionals (Checking for a Winner)
 
 namespace CS_Learning_Journey
 {
-    internal class TicTacToe
+    public class TicTacToe
     {
         private static int gridSize = 3;
         public static char[][] grid = new char[gridSize][];
@@ -133,7 +133,7 @@ namespace CS_Learning_Journey
             return '\0';
         }
 
-        public static char[][] TicTacToeRender(bool turn, int playerInput = 0 )
+        public static bool TryPlaceMove(bool turn, int playerInput = 0 )
         {
             //check player input
             int row = (playerInput - 1) / gridSize;
@@ -143,20 +143,93 @@ namespace CS_Learning_Journey
             char symbol = (!turn)?'O':'X';
             char targetChar = (char)(playerInput + '0');
 
-            if (grid[row][col] == targetChar && grid[row][col] != 'X' && grid[row][col] != 'O')
+            if (grid[row][col] == targetChar )
             {
                 grid[row][col] = symbol;
+                return true;
+                
             }
+            else 
+            { return false; //occupied
+            }
+
             
-
-
-
-
-                BoardRender();
-
-            return grid;
-
         }
-         
+    
+               
+            
+        public static void Run()
+        {
+            //payer input for TicTacToe
+            int playerMove;
+            bool isTurn = true;
+            int gridSize = 3;
+            int moveCounter = 0;
+
+            TicTacToe.BoardRender();
+
+            while (true)
+            {
+
+                if (isTurn)
+                    Console.WriteLine("X turn enter No between 1-9 & q or Q to exit");
+                else
+                    Console.WriteLine("O turn enter No between 1-9 & q or Q to exit");
+
+                string? inputX = Console.ReadLine();
+
+                if (inputX == null) continue;
+                else if (inputX == "Q" || inputX == "q")
+                {
+                    Console.WriteLine("OK Existing !");
+                    break;
+                }
+                else if (int.TryParse(inputX, out playerMove) && playerMove > 0 && playerMove < 10)
+                {
+                    bool placed = TryPlaceMove(isTurn, playerMove);
+                    //Run TikTacToe
+                    
+                    if(!placed)
+                    {
+                        Console.Clear();
+                        TicTacToe.BoardRender();
+                        Console.WriteLine("Board Already Taken Try again");
+                        continue; //doesn't increment move counter
+                    }
+
+                    //check winning
+                    moveCounter++;
+                    Console.Clear();
+                    TicTacToe.BoardRender();
+
+                    //checking winner
+                    char winner = TicTacToe.checkWin();
+                    if ((winner == 'X' || winner == 'O') && moveCounter >= 3)
+                    {
+                        Console.WriteLine("Player " + winner + " WON!");
+                        System.Threading.Thread.Sleep(1000);
+                        MainMenu.mainMenu();
+                        break;
+                    }
+                    else if (winner == '\0' && moveCounter >= gridSize * gridSize)
+                    {
+                        Console.Clear();
+                        Console.WriteLine(" DRAW !!");
+                        System.Threading.Thread.Sleep(1000);
+                        MainMenu.mainMenu();
+                        break;
+                    }
+
+
+
+                    //change player turn
+                    isTurn = !isTurn;
+                }
+
+
+            }
+        }
     }
+
+
 }
