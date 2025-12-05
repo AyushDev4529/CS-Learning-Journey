@@ -4,7 +4,10 @@
     {
         static void Main(string[] args)
         {
-            MainMenu.mainMenu();
+            Entity enemy = new Entity();
+            enemy.OnDeath += enemy.HandleOnDeath;
+            enemy.TakeDamage(1000);
+            //MainMenu.mainMenu();
         }
     }
 }
