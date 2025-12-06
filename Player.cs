@@ -10,23 +10,30 @@ namespace CS_Learning_Journey
         public string? name;//character name
         protected int health;
         protected int maxHealth;
-        protected int row;
-        protected int col;
-        protected int damage;
+        public int row { get; protected set; }
+        public int col { get; protected set; }
+        public int damage;
         public char symbol;// for console rendering
+
+        //overriding string in Entity to display useful info when printing entity
+        public override string ToString()
+        {
+            return $"{name} {health}/{maxHealth} {row} {col}";
+        }
 
         public event Action<Entity> OnDeath;//Declaring a event
         public void HandleOnDeath(Entity entity)
         {
             Console.WriteLine($"{entity} has Fallen!!");
+            
         }
         public Entity()
         {
-            name = "DeviKin";
+            name = "Enemy";
             health = 100;
             maxHealth = 100;
             row = 0; col = 0;
-            damage = 5;
+            damage = 10;
             symbol = 'A';
         }
 
@@ -48,6 +55,8 @@ namespace CS_Learning_Journey
 
             health = Math.Clamp(health, 0, maxHealth);// return min if value is smaller then min
             if(health == 0) OnDeath?.Invoke(this);
+            Console.WriteLine($"{name} took damage!");
+            
             //- If there are subscribers to the event → call them, passing the current entity (this) as the argument.
             //- If no subscribers → do nothing (avoids NullReferenceException).
 
@@ -63,8 +72,19 @@ namespace CS_Learning_Journey
             int dmg = (damage == 0) ? 0 : damage;
             
             target.TakeDamage(dmg);
+            //Console.WriteLine($"{target} took {damage} damge !");
+
         }
 
+        public Player()
+        {
+            name = "Player";
+            health = 100;
+            maxHealth = 1000;
+            row = 0; col = 0;
+            damage = 25;
+            symbol = '@';
+        }
       
  
     }
