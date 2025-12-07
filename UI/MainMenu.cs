@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CS_Learning_Journey.Map.Games;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CS_Learning_Journey
+namespace CS_Learning_Journey.UI
 {
     internal class MainMenu
     {
@@ -24,9 +25,9 @@ namespace CS_Learning_Journey
                 {
                     case '1':
                         //Run Dungeoun Map
-                        Console.Clear();
-                        System.Threading.Thread.Sleep(1000);
-                        MapRenderer.Run();
+                        //Console.Clear();
+                        //System.Threading.Thread.Sleep(1000);
+                        //MapRenderer.Run();
                         break;
                     case '2':
                         Console.Clear();

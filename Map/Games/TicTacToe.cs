@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CS_Learning_Journey.UI;
+using System;
 using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -15,7 +16,7 @@ Loops (The Game Round)
 Conditionals (Checking for a Winner)
  */
 
-namespace CS_Learning_Journey
+namespace CS_Learning_Journey.Map.Games
 {
     public class TicTacToe
     {

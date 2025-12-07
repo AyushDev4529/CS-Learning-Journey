@@ -1,5 +1,8 @@
-![GitHub last commit](https://img.shields.io/github/last-commit/AyushDev4529/CS-Learning-Journey)
-![GitHub repo size](https://img.shields.io/github/repo-size/AyushDev4529/CS-Learning-Journey)
+<p align="center">
+  <img src="https://img.shields.io/github/last-commit/AyushDev4529/CS-Learning-Journey">
+  <img src="https://img.shields.io/github/repo-size/AyushDev4529/CS-Learning-Journey">
+</p>
+
 
 # CSharp-Learning-Journey
 Documenting my journey from C# fundamentals to shipping my first Unity game by 2026. Includes algorithms, design patterns, and mini-projects.
@@ -17,11 +20,12 @@ I am Ayush, an aspiring Game Developer. My goal is to publish my first polished 
 * **Mini-Projects:** Console applications to test core concepts.
 
 ## 📅 Progress Snapshot (Updated Weekly)
-Week	Focus			Progress
-Week 1	Arrays & Loops	Built Dungeon Map Renderer (2D arrays + movement)
-Week 2	Modular Logic	Built Tic-Tac-Toe + Arcade Menu System
-Week 3	OOP Foundation	Implemented Entity, Player, Events, Polymorphism
-Week 4	RPG Systems	Building Turn-Based Combat Prototype
+| Week | Focus | Progress |
+|---|---|---|
+| Week 1 | Arrays & Loops | Built Dungeon Map Renderer (2D arrays + movement) |
+| Week 2 | Modular Logic | Built Tic-Tac-Toe + Arcade Menu System |
+| Week 3 | OOP Foundation | Implemented Entity, Player, Events, Polymorphism |
+| Week 4 | RPG Systems | Building Turn-Based Combat Prototype |
 
 > 📌 This section updates every Sunday to track growth like a real engineering log.
 
@@ -40,12 +44,13 @@ Week 4	RPG Systems	Building Turn-Based Combat Prototype
 * Understanding of access modifiers (public, protected, private)
 
 ## ⭐ Highlighted Mini-Projects
-Project |	Concepts Demonstrated
-Dungeon Map Renderer |	2D arrays, player movement, collision checks
-Tic-Tac-Toe |	Win detection using loops; no hardcoded conditions
-Arcade Menu System |	Program routing, modular structure
-Entity OOP System |	Inheritance, events, overridden methods
-RPG Combat Prototype |	Attack system, event triggers, turn loop
+| Project |	Concepts Demonstrated |
+|---|---|
+| Dungeon Map Renderer | 2D arrays, player movement, collision checks |
+| Tic-Tac-Toe |	Win detection using loops; no hardcoded conditions |
+| Arcade Menu System | Program routing, modular structure |
+| Entity OOP System | Inheritance, events, overridden methods |
+| RPG Combat Prototype | Attack system, event triggers, turn loop |
 
 
 ## 🎮 How To Run These Projects

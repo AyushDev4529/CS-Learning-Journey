@@ -1,17 +1,13 @@
-﻿using CS_Learning_Journey;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CS_Learning_Journey
+﻿
+namespace CS_Learning_Journey.Entities
 {
     public class Entity
     {
         public string? name;//character name
         protected int health;
         protected int maxHealth;
-        public int row { get; protected set; }
-        public int col { get; protected set; }
+        public int row;
+        public int col;
         public int damage;
         public char symbol;// for console rendering
 
@@ -76,12 +72,12 @@ namespace CS_Learning_Journey
 
         }
 
-        public Player()
+        public Player(int initialRow,int initialCol)
         {
             name = "Player";
             health = 100;
             maxHealth = 1000;
-            row = 0; col = 0;
+            row = initialRow; col = initialCol;
             damage = 25;
             symbol = '@';
         }
