@@ -1,4 +1,5 @@
-﻿using CS_Learning_Journey.Map.Games;
+﻿using CS_Learning_Journey.Core;
+using CS_Learning_Journey.Map.Games;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -25,9 +26,10 @@ namespace CS_Learning_Journey.UI
                 {
                     case '1':
                         //Run Dungeoun Map
-                        //Console.Clear();
+                        Console.Clear();
                         //System.Threading.Thread.Sleep(1000);
-                        //MapRenderer.Run();
+                        PlayerInput input = new PlayerInput();
+                        input.MovementLogic();
                         break;
                     case '2':
                         Console.Clear();

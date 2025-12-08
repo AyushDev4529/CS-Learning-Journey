@@ -1,4 +1,5 @@
 ﻿using CS_Learning_Journey.Entities;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace CS_Learning_Journey.Core
@@ -75,8 +76,68 @@ namespace CS_Learning_Journey.Core
 
         }
 
+        
+
     }
 
-}
+    public class PlayerInput 
+    {
+        Player player = new Player(1, 1);
+        Enemy slime = new Enemy(5, 5);
+        GameLogic logic = new GameLogic();
+        public int MapSizeInput()
+        {
+            int mapSize;
+            while (true)
+            {
+                Console.WriteLine("Enter Map Size between 10 to 15");
 
+                string? inputSize = Console.ReadLine();
+                if (int.TryParse(inputSize, out mapSize) && mapSize >= 10 && mapSize <= 15)
+                {
+                    return mapSize;
+                }
+            }
+
+        }
+
+        public void MovementLogic()
+        {
+            //MapSizeInput();   
+            int mapSize = MapSizeInput();
+            char[,] arr = new char[mapSize, mapSize];
+            while (true)
+            {
+
+                Console.WriteLine("\nEnter WSAD to move , q to exit\n");
+                Console.WriteLine();
+                char playerInput = Console.ReadKey().KeyChar;
+               
+
+                if (playerInput == char.ToLower('q'))
+                {
+                    Console.WriteLine(" \nSaving and Exsiting!\n ");
+                    System.Threading.Thread.Sleep(1000);
+                    break;
+                }
+                else if (playerInput == char.ToLower('w') || playerInput == char.ToLower('s') || playerInput == char.ToLower('a') || playerInput == char.ToLower('d'))
+                {
+                    Console.Clear();
+                    
+                    logic.TryMovePlayer(arr, player, slime, playerInput);
+                    MapRenderer.DrawMap(arr, player, slime);
+                }
+                else
+                {
+                    Console.Clear();
+                    MapRenderer.DrawMap(arr,player, slime);
+                    //Console.WriteLine("\n Enter WSAD to move , q to exit");
+                }
+            }
+        }
+
+    }
+
+
+}
 
