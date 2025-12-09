@@ -22,7 +22,7 @@ public class MapRenderer
                 //setting up player position
                 if (player.row == i && player.col == j)
                     map[i, j] = player.symbol;
-                else if (enemy.Row == i && enemy.Col == j)
+                else if (enemy.Row == i && enemy.Col == j && enemy.IsAlive)
                     map[i, j] = enemy.Symbol;
                 else
                     map[i, j] = '.';

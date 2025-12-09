@@ -4,7 +4,7 @@ namespace CS_Learning_Journey.Entities
     public class Player
     {
         public string? name;//character name
-        protected float health;
+        public float health;
         protected float maxHealth;
         public int row;
         public int col;
@@ -13,6 +13,7 @@ namespace CS_Learning_Journey.Entities
         public float maxCrit {  get; protected set; }
         public float Defence;
         public char symbol;// for console rendering
+        public bool IsAlive;
 
         //Constructor to assign Player vanlues
         public Player(int initialRow, int initialCol)
@@ -26,19 +27,24 @@ namespace CS_Learning_Journey.Entities
             //crit = 0;
             Defence = 10;
             symbol = '@';
+            IsAlive = true;
         }
 
 
         //player attack enemy
-        public void Attack(Enemy target)
+        public float Attack(Enemy target)
         {
             float attakPower = damage - (target.Defence / 100) * damage;
             target.TakeDamage(attakPower);
+            
+            return attakPower;
         }
 
         public float TakeDamage(float amount)
         {
-            health -= amount;
+            health = Math.Clamp(health-amount,0,maxHealth);
+            
+            if (health <= 0) { IsAlive = false; }
             return health;
         }
         

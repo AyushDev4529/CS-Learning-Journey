@@ -1,4 +1,5 @@
-﻿using CS_Learning_Journey.Entities;
+﻿using CS_Learning_Journey.Core;
+using CS_Learning_Journey.Entities;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -6,8 +7,11 @@ namespace CS_Learning_Journey.Core
 {
     public class GameLogic
     {
+        //enum for move results 
         public enum MoveResult { OutofBounds, EnemyAhead, WallAhead, Success }
-        public void TryMovePlayer(char[,] map, Player player, Enemy enemy, char playerInput)
+
+        //setting function with enum return type
+        public MoveResult TryMovePlayer(char[,] map, Player player, Enemy enemy, char playerInput)
         {
             int mapSize = map.GetLength(0);
 
@@ -33,9 +37,10 @@ namespace CS_Learning_Journey.Core
                     break;
             }
 
-            if (playerInput == '\0') return;
+            if (playerInput == '\0') return 0;
 
             MoveResult result = CanMove(nextPlayerRow, nextPlayerCol, enemy, mapSize);
+
 
             //calculating player movement
             switch (result)
@@ -43,48 +48,54 @@ namespace CS_Learning_Journey.Core
                 case MoveResult.Success:
                     player.row = nextPlayerRow;
                     player.col = nextPlayerCol;
-                    break;
+                    return MoveResult.Success;
+
                 case MoveResult.OutofBounds:
                     Console.WriteLine("You can't move outside the map!");
-                    break;
+                    return MoveResult.OutofBounds;
+
                 case MoveResult.EnemyAhead:
-                    Console.WriteLine("Enemy Ahead! Preapare for battle!");
-                    break;
+                      return MoveResult.EnemyAhead;
+                    
                 case MoveResult.WallAhead:
                     Console.WriteLine("A Wall blocks your path!");
-                    break;
+                    return MoveResult.WallAhead;
+
+                default:
+                    return 0;
 
             }
-
-
-           
-
-          
         }
 
 
+        //Checking if player can move
         public MoveResult CanMove(int nextRow, int nextCol, Enemy enemy, int mapSize)
         {
 
             //check if inBound 
             if ((nextRow < 0 || nextRow >= mapSize) || (nextCol < 0 || nextCol >= mapSize)) { return MoveResult.OutofBounds; }
             //Enemy range  check
-            if (nextRow == enemy.Row && nextCol == enemy.Col) { return MoveResult.EnemyAhead; }
+            // Check Enemy Collision - ONLY if alive!
+            // If the enemy is dead, this if-statement fails, 
+            // and the code moves to the 'else' block (Success), allowing the player to walk.
+            if (nextRow == enemy.Row && nextCol == enemy.Col && enemy.IsAlive) { return MoveResult.EnemyAhead; }
             else
                 return MoveResult.Success;
 
 
         }
 
-        
-
     }
 
-    public class PlayerInput 
+
+    public class PlayerInput
     {
+        //initializing game objects
         Player player = new Player(1, 1);
         Enemy slime = new Enemy(5, 5);
         GameLogic logic = new GameLogic();
+
+        //taking map size, in future there will be only 3 map size of dungeoun of connected rooms
         public int MapSizeInput()
         {
             int mapSize;
@@ -106,13 +117,14 @@ namespace CS_Learning_Journey.Core
             //MapSizeInput();   
             int mapSize = MapSizeInput();
             char[,] arr = new char[mapSize, mapSize];
+
+            //taking input for movment
             while (true)
             {
 
                 Console.WriteLine("\nEnter WSAD to move , q to exit\n");
                 Console.WriteLine();
                 char playerInput = Console.ReadKey().KeyChar;
-               
 
                 if (playerInput == char.ToLower('q'))
                 {
@@ -123,21 +135,23 @@ namespace CS_Learning_Journey.Core
                 else if (playerInput == char.ToLower('w') || playerInput == char.ToLower('s') || playerInput == char.ToLower('a') || playerInput == char.ToLower('d'))
                 {
                     Console.Clear();
-                    
-                    logic.TryMovePlayer(arr, player, slime, playerInput);
+                    GameLogic.MoveResult result = logic.TryMovePlayer(arr, player, slime, playerInput);
+                    if (result == GameLogic.MoveResult.EnemyAhead)
+                    {
+                        BattleSystem battle = new BattleSystem();
+                        battle.StartBattle(player, slime);
+                    }
+
                     MapRenderer.DrawMap(arr, player, slime);
                 }
                 else
                 {
                     Console.Clear();
-                    MapRenderer.DrawMap(arr,player, slime);
+                    MapRenderer.DrawMap(arr, player, slime);
                     //Console.WriteLine("\n Enter WSAD to move , q to exit");
                 }
             }
         }
 
     }
-
-
 }
-

@@ -5,15 +5,16 @@ namespace CS_Learning_Journey.Entities
 {
     public class Enemy
     {
-        public int Row{ get; protected set; }
-        public int Col{ get; protected set; }
+        public int Row;
+        public int Col;
         public float Health;
-        protected float MaxHealth;
+        public float MaxHealth;
         
-        public string Name {  get; protected set; }
+        public string? Name {  get; protected set; }
         public float Damage { get; protected set; }
         public float Defence { get; protected set; }
-        public char Symbol { get; protected set; } 
+        public char Symbol { get; protected set; }
+        public bool IsAlive;
 
         public Enemy(int initialRow, int initialCol)
         {
@@ -22,21 +23,31 @@ namespace CS_Learning_Journey.Entities
             Name = "Slime";
             MaxHealth = 100f;
             Health = MaxHealth;
+            Damage = 10;
             
             Defence = 5f;
             Symbol = 'E';
+            IsAlive = true;
+
         }
 
-        public void Attack(Player player)
+        //setting player attack function
+        public float Attack(Player player)
         {
-            float AttackPower = Damage - (player.Defence / 100) * Damage;
+            float attackPower = Damage - (player.Defence / 100) * Damage;
+            
+            player.TakeDamage(attackPower);
+            return attackPower;
         }
+
+        //setting player take damage function
         public float TakeDamage(float amount)
         {
-            Health -= amount;
-            Console.WriteLine($"{Name} took {amount} damage!");
+            Health = Math.Clamp(Health - amount, 0, MaxHealth);
+            
+            if (Health <= 0) IsAlive = false;
             return Health;
         }
-              
+        
     }
 }
