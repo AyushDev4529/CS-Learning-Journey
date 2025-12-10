@@ -1,57 +1,49 @@
 ﻿
-namespace CS_Learning_Journey.Entities
+namespace CS_Learning_Journey.Entity
 {
-    public class Player
+    public class Player : Entity
     {
-        public string? name;//character name
-        public float health;
-        protected float maxHealth;
-        public int row;
-        public int col;
-        public float damage;
-        //public float crit;
-        public float maxCrit {  get; protected set; }
-        public float Defence;
-        public char symbol;// for console rendering
-        public bool IsAlive;
+        //random no gen
+        static Random rand = new Random();
 
         //Constructor to assign Player vanlues
         public Player(int initialRow, int initialCol)
         {
-            name = "Player";
-            health = 100;
-            maxHealth = 1000;
-            row = initialRow;
-            col = initialCol;
-            damage = 25;
-            //crit = 0;
+            Name = "Player";
+            Health = 100;
+            MaxHealth = 1000;
+            Row = initialRow;
+            Col = initialCol;
+            Damage = 25;
             Defence = 10;
-            symbol = '@';
+            Symbol = '@';
             IsAlive = true;
         }
 
-
-        //player attack enemy
-        public float Attack(Enemy target)
+        public override float Attack(Entity entity)
         {
-            float attakPower = damage - (target.Defence / 100) * damage;
-            target.TakeDamage(attakPower);
-            
-            return attakPower;
-        }
+            float attackPower;
+            int CritChance;
+            CritChance = rand.Next(0, 100);
+            //critical hit chance 20%
+            if (CritChance < 20)
+            {
+                //Critical hit does double damage
+                 attackPower = (Damage - (entity.Defence / 100) * Damage) * 2;
+                Console.WriteLine("✨ CRITICAL HIT! ✨");
+                System.Threading.Thread.Sleep(300);
+            }
+            else
+            {
+                 attackPower = Damage - (entity.Defence / 100) * Damage;
+            }
 
-        public float TakeDamage(float amount)
-        {
-            health = Math.Clamp(health-amount,0,maxHealth);
-            
-            if (health <= 0) { IsAlive = false; }
-            return health;
-        }
-        
-    }
-    
+            entity.TakeDamage(attackPower);
 
-    
+            return attackPower;
+        }
+    } 
+   
 }
 
 

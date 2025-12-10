@@ -1,4 +1,4 @@
-﻿using CS_Learning_Journey.Entities;
+﻿using CS_Learning_Journey.Entity;
 
 
 /* 
@@ -20,8 +20,8 @@ public class MapRenderer
             for (int j = 0; j < MapSize; j++)
             {
                 //setting up player position
-                if (player.row == i && player.col == j)
-                    map[i, j] = player.symbol;
+                if (player.Row == i && player.Col == j)
+                    map[i, j] = player.Symbol;
                 else if (enemy.Row == i && enemy.Col == j && enemy.IsAlive)
                     map[i, j] = enemy.Symbol;
                 else

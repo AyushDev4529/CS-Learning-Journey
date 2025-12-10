@@ -1,5 +1,5 @@
 ﻿
-using CS_Learning_Journey.Entities;
+using CS_Learning_Journey.Entity;
 namespace CS_Learning_Journey.Core
 {
     public class BattleSystem
@@ -16,7 +16,7 @@ namespace CS_Learning_Journey.Core
             while (player.IsAlive && enemy.IsAlive)
             {
                 Console.Clear();
-                Console.WriteLine($"{player.name} HP : {Math.Floor(player.health)} | {enemy.Name} HP : {Math.Floor(enemy.Health)} ");
+                Console.WriteLine($"{player.Name} HP : {Math.Floor(player.Health)} | {enemy.Name} HP : {Math.Floor(enemy.Health)} ");
                 if (PlayerTurn) Console.WriteLine(" Press Space Bar to Attack. ");
                 else Console.WriteLine("Press any Key to Defend.");
 
@@ -24,7 +24,7 @@ namespace CS_Learning_Journey.Core
 
                 if (PlayerTurn && input == ' ')
                 {
-                    Console.WriteLine($"{player.name} : Attacking {enemy.Name}");
+                    Console.WriteLine($"{player.Name} : Attacking {enemy.Name}");
                     System.Threading.Thread.Sleep(500);
 
                     player.Attack(enemy);
@@ -32,7 +32,7 @@ namespace CS_Learning_Journey.Core
                 }
                 else if (!PlayerTurn)
                 {
-                    Console.WriteLine($"{player.name} : Ouch!");
+                    Console.WriteLine($"{player.Name} : Ouch!");
                     System.Threading.Thread.Sleep(500);
                     enemy.Attack(player);
                     PlayerTurn = true;
@@ -46,13 +46,13 @@ namespace CS_Learning_Journey.Core
             Console.Clear();
 
             //Victory message
-            if (player.health > 0)
+            if (player.Health > 0)
             {
                 Console.WriteLine("Player Won!");
             }
             else
             {
-                Console.WriteLine($"{player.name} got defeated by {enemy.Name}");
+                Console.WriteLine($"{player.Name} got defeated by {enemy.Name}");
             }
 
             

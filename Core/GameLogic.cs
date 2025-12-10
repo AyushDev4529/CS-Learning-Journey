@@ -1,5 +1,5 @@
 ﻿using CS_Learning_Journey.Core;
-using CS_Learning_Journey.Entities;
+using CS_Learning_Journey.Entity;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -16,8 +16,8 @@ namespace CS_Learning_Journey.Core
             int mapSize = map.GetLength(0);
 
             //start with player current position
-            int nextPlayerRow = player.row;
-            int nextPlayerCol = player.col;
+            int nextPlayerRow = player.Row;
+            int nextPlayerCol = player.Col;
 
             // calculate next player position based on input
 
@@ -46,8 +46,8 @@ namespace CS_Learning_Journey.Core
             switch (result)
             {
                 case MoveResult.Success:
-                    player.row = nextPlayerRow;
-                    player.col = nextPlayerCol;
+                    player.Row = nextPlayerRow;
+                    player.Col = nextPlayerCol;
                     return MoveResult.Success;
 
                 case MoveResult.OutofBounds:

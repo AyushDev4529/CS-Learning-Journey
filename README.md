@@ -27,11 +27,13 @@ I am Ayush, an aspiring Game Developer. My goal is to publish my first polished 
 | Week 3 | OOP Foundation | Implemented Entity, Player, Events, Polymorphism |
 | Week 4 | RPG Systems | Building Turn-Based Combat Prototype |
 
+
+
 > 📌 This section updates every Sunday to track growth like a real engineering log.
 
 ## 🧠 Skills Gained So Far
 
-* Object-Oriented Programming (Classes, Inheritance, Encapsulation)
+* Object-Oriented Programming (Classes, Inheritance, Encapsulation, Polymorphism)
 
 * Events & Delegates (OnDeath system implemented)
 
@@ -75,13 +77,16 @@ This month is focused on transitioning from procedural C# into **true OOP and cl
   `Player` and future NPC/enemy types inherit from a shared `Entity` base class.
 
 - **Encapsulation**  
-  Used `protected` fields for health/damage and public getters for safe access.
+  Used `protected` fields for Health/Damage and public getters for safe access.
 
 - **Polymorphism**  
   Overridable methods such as `TakeDamage()` allow specialized behavior in subclasses.
 
 - **Events & Delegates**  
   Implemented an `OnDeath` event so other systems can react when an entity dies.
+-
+- **Polymorphic Attack System**  
+  Refactored Player and Enemy to share a unified Entity base class with overridable combat behavior (virtual + override).
 
 ---
 

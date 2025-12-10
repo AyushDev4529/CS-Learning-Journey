@@ -141,12 +141,12 @@ namespace CS_Learning_Journey.Map.Games
             int col = (playerInput - 1) % gridSize;
 
             //update player input
-            char symbol = (!turn)?'O':'X';
+            char Symbol = (!turn)?'O':'X';
             char targetChar = (char)(playerInput + '0');
 
             if (grid[row][col] == targetChar )
             {
-                grid[row][col] = symbol;
+                grid[row][col] = Symbol;
                 return true;
                 
             }
