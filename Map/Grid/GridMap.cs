@@ -21,11 +21,17 @@ public class MapRenderer
             {
                 //setting up player position
                 if (player.Row == i && player.Col == j)
+                {
                     map[i, j] = player.Symbol;
+                }
                 else if (enemy.Row == i && enemy.Col == j && enemy.IsAlive)
+                {
                     map[i, j] = enemy.Symbol;
+                }
                 else
+                {
                     map[i, j] = '.';
+                }
 
             }
         }
@@ -37,7 +43,24 @@ public class MapRenderer
         {
             for (int j = 0; j < map.GetLength(1); j++)
             {
-                Console.Write(map[i, j] + " ");
+                if (map[i, j] == player.Symbol)
+                {
+                    var color = player.GetTeamColor();
+                    Console.ForegroundColor = color;
+                    Console.Write(map[i, j] + " ");
+                }
+                else if (map[i, j] == enemy.Symbol)
+                {
+                    var color = enemy.GetTeamColor();
+                    Console.ForegroundColor = color;
+                    Console.Write(map[i, j] + " ");
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.Write(map[i, j] + " ");
+                }
+                    
             }
             Console.WriteLine();
         }

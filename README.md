@@ -100,6 +100,7 @@ A small combat simulation used to practice real game-like architecture before mo
 - Movement logic using row/column grid positions.
 - Overridden `ToString()` method to print entity stats cleanly.
 - Turn-based loop inside `Program.cs`.
+- Introduced Abstract Classes & Interfaces. Refactored Entity hierarchy..
 
 ### 🧪 Example Architecture
 

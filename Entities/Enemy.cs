@@ -21,7 +21,13 @@ namespace CS_Learning_Journey.Entity
 
         }
 
-       
-        
+        //setting enemy color
+        public override ConsoleColor GetTeamColor()
+        {
+            return ConsoleColor.Red;
+        }
+
+
+
     }
 }

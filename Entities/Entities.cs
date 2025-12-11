@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CS_Learning_Journey.Entity
 {
-    public class Entity
+    public abstract class Entity
     {
         public string? Name;//character Name
         public float Health;
@@ -12,7 +12,6 @@ namespace CS_Learning_Journey.Entity
         public int Row;
         public int Col;
         public float Damage;
-        //public float crit;
         public float Defence;
         public char Symbol;// for console rendering
         public bool IsAlive;
@@ -33,5 +32,11 @@ namespace CS_Learning_Journey.Entity
             entity.TakeDamage(attackPower);
             return attackPower;
         }
+
+
+
+        //settning team color
+        public abstract ConsoleColor GetTeamColor();
+
     }
 }

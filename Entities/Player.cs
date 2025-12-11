@@ -20,6 +20,12 @@ namespace CS_Learning_Journey.Entity
             IsAlive = true;
         }
 
+        //setting player Color
+        public override ConsoleColor GetTeamColor()
+        {
+            return ConsoleColor.Green;
+        }
+
         public override float Attack(Entity entity)
         {
             float attackPower;

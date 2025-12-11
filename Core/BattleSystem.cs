@@ -11,12 +11,20 @@ namespace CS_Learning_Journey.Core
             bool PlayerTurn = true;
             
             Console.WriteLine("⚔️ BATTLE STARTED! ⚔️");
-
+            var playerColor = player.GetTeamColor();
+            var enemyColor = enemy.GetTeamColor();
+            Console.ForegroundColor = ConsoleColor.White;
             //starting battle loop
             while (player.IsAlive && enemy.IsAlive)
             {
+
                 Console.Clear();
-                Console.WriteLine($"{player.Name} HP : {Math.Floor(player.Health)} | {enemy.Name} HP : {Math.Floor(enemy.Health)} ");
+                Console.ForegroundColor = playerColor;  
+                Console.Write($"{player.Name} HP : {Math.Floor(player.Health)} ");
+                Console.ForegroundColor = enemyColor;
+                Console.Write($"| {enemy.Name} HP : {Math.Floor(enemy.Health)} ");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
                 if (PlayerTurn) Console.WriteLine(" Press Space Bar to Attack. ");
                 else Console.WriteLine("Press any Key to Defend.");
 
@@ -24,6 +32,7 @@ namespace CS_Learning_Journey.Core
 
                 if (PlayerTurn && input == ' ')
                 {
+                    Console.ForegroundColor = playerColor;
                     Console.WriteLine($"{player.Name} : Attacking {enemy.Name}");
                     System.Threading.Thread.Sleep(500);
 
@@ -32,6 +41,7 @@ namespace CS_Learning_Journey.Core
                 }
                 else if (!PlayerTurn)
                 {
+                    Console.ForegroundColor = enemyColor;
                     Console.WriteLine($"{player.Name} : Ouch!");
                     System.Threading.Thread.Sleep(500);
                     enemy.Attack(player);
@@ -48,10 +58,12 @@ namespace CS_Learning_Journey.Core
             //Victory message
             if (player.Health > 0)
             {
+                Console.ForegroundColor = playerColor;
                 Console.WriteLine("Player Won!");
             }
             else
             {
+                Console.ForegroundColor = enemyColor;
                 Console.WriteLine($"{player.Name} got defeated by {enemy.Name}");
             }
 
