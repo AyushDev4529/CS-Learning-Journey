@@ -1,12 +1,12 @@
 ﻿
-namespace CS_Learning_Journey.Entity
+namespace CS_Learning_Journey.Entities
 {
     public class Player : Entity
     {
         //random no gen
         static Random rand = new Random();
 
-        //Constructor to assign Player vanlues
+        //Constructor to assign Player values
         public Player(int initialRow, int initialCol)
         {
             Name = "Player";
@@ -15,7 +15,7 @@ namespace CS_Learning_Journey.Entity
             Row = initialRow;
             Col = initialCol;
             Damage = 25;
-            Defence = 10;
+            Defense = 10;
             Symbol = '@';
             IsAlive = true;
         }
@@ -35,13 +35,13 @@ namespace CS_Learning_Journey.Entity
             if (CritChance < 20)
             {
                 //Critical hit does double damage
-                 attackPower = (Damage - (entity.Defence / 100) * Damage) * 2;
+                 attackPower = (Damage - (entity.Defense / 100) * Damage) * 2;
                 Console.WriteLine("✨ CRITICAL HIT! ✨");
                 System.Threading.Thread.Sleep(300);
             }
             else
             {
-                 attackPower = Damage - (entity.Defence / 100) * Damage;
+                 attackPower = Damage - (entity.Defense / 100) * Damage;
             }
 
             entity.TakeDamage(attackPower);

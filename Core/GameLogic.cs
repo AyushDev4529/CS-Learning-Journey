@@ -1,5 +1,5 @@
 ﻿using CS_Learning_Journey.Core;
-using CS_Learning_Journey.Entity;
+using CS_Learning_Journey.Entities;
 using static System.Net.Mime.MediaTypeNames;
 
 

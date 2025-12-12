@@ -1,7 +1,7 @@
 ﻿
 using System.Xml.Linq;
 
-namespace CS_Learning_Journey.Entity
+namespace CS_Learning_Journey.Entities
 {
     public class Enemy :Entity
     {
@@ -11,11 +11,11 @@ namespace CS_Learning_Journey.Entity
             Row = initialRow; 
             Col = initialCol;
             Name = "Slime";
-            MaxHealth = 100f;
+            MaxHealth = 90f;
             Health = MaxHealth;
             Damage = 10;
             
-            Defence = 5f;
+            Defense = 5f;
             Symbol = 'E';
             IsAlive = true;
 

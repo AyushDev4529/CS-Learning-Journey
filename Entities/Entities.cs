@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using CS_Learning_Journey.Interfaces;
 
-namespace CS_Learning_Journey.Entity
+namespace CS_Learning_Journey.Entities
 {
-    public abstract class Entity
+    public abstract class Entity : IDamageable
     {
         public string? Name;//character Name
         public float Health;
@@ -12,7 +10,7 @@ namespace CS_Learning_Journey.Entity
         public int Row;
         public int Col;
         public float Damage;
-        public float Defence;
+        public float Defense;
         public char Symbol;// for console rendering
         public bool IsAlive;
 
@@ -21,6 +19,8 @@ namespace CS_Learning_Journey.Entity
         public virtual float TakeDamage(float amount)
         {
             Health = Math.Clamp(Health - amount, 0, MaxHealth);
+            Console.WriteLine($"{Name} took {amount} damage, remaining durability: {Health}");
+
             if (Health <= 0) IsAlive = false;
             return Health;
         }
@@ -28,14 +28,14 @@ namespace CS_Learning_Journey.Entity
         //setting  attack function
         public virtual float Attack(Entity entity)
         {
-            float attackPower = Damage - (entity.Defence / 100) * Damage;
+            float attackPower = Damage - (entity.Defense / 100) * Damage;
             entity.TakeDamage(attackPower);
             return attackPower;
         }
 
 
 
-        //settning team color
+        //setting team color
         public abstract ConsoleColor GetTeamColor();
 
     }

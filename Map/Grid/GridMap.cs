@@ -1,4 +1,4 @@
-﻿using CS_Learning_Journey.Entity;
+﻿using CS_Learning_Journey.Entities;
 
 
 /* 

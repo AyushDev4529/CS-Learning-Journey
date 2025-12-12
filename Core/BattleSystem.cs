@@ -1,5 +1,5 @@
 ﻿
-using CS_Learning_Journey.Entity;
+using CS_Learning_Journey.Entities;
 namespace CS_Learning_Journey.Core
 {
     public class BattleSystem
