@@ -6,8 +6,9 @@ using System.Text;
 
 namespace CS_Learning_Journey.UI
 {
-    internal class MainMenu
+    public class MainMenu
     {
+
 
         public static void mainMenu()
         {
@@ -16,7 +17,7 @@ namespace CS_Learning_Journey.UI
                 Console.Clear();
                 Console.WriteLine("----AYUSH'S ARCADE----");
                 Console.WriteLine("Choose A game to Play. ");
-                Console.WriteLine("1. Dungeoun Map! ");
+                Console.WriteLine("1. Dungeon Map! ");
                 Console.WriteLine("2. Tic Tac Toe! ");
                 Console.WriteLine("3. Exit! ");
 
@@ -25,7 +26,7 @@ namespace CS_Learning_Journey.UI
                 switch (choice)
                 {
                     case '1':
-                        //Run Dungeoun Map
+                        //Run Dungeon Map
                         Console.Clear();
                         //System.Threading.Thread.Sleep(1000);
                         PlayerInput input = new PlayerInput();

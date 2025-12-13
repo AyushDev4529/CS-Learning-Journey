@@ -1,22 +1,30 @@
 ﻿
+using CS_Learning_Journey.Core;
+using CS_Learning_Journey.Tests;
+using CS_Learning_Journey.Entities;
 using CS_Learning_Journey.Interfaces;
 using CS_Learning_Journey.UI;
-using CS_Learning_Journey.Tests;
 
-
-using CS_Learning_Journey.Entities;
 
 namespace CS_Learning_Journey
 {
+
     internal class Program
     {
         static void Main(string[] args)
         {
-            ListTest listTest = new ListTest();
-            listTest.ListTestRun();
+            //Inventory System Test
+            DictTest inventoryTestRunner = new DictTest();
+            inventoryTestRunner.inventoryDictTest();
 
-            MainMenu.mainMenu();
 
+            GameManager gameManager = new GameManager();
+            for (int i = 0; i < 10; i++)
+            {
+                gameManager.Update();
+
+
+            }
         }
     }
 }

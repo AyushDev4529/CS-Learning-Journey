@@ -1,4 +1,5 @@
-﻿using CS_Learning_Journey.Entities;
+﻿using CS_Learning_Journey.Core;
+using CS_Learning_Journey.Entities;
 using CS_Learning_Journey.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace CS_Learning_Journey.Tests
             }
 
             Console.ReadKey();
+
         }
     }
 }

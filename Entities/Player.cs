@@ -6,6 +6,8 @@ namespace CS_Learning_Journey.Entities
         //random no gen
         static Random rand = new Random();
 
+        public Inventory inventory = new Inventory();
+
         //Constructor to assign Player values
         public Player(int initialRow, int initialCol)
         {
